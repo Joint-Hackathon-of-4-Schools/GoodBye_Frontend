@@ -1,5 +1,5 @@
 import React from "react";
-import * as _ from "./style"
+import * as _ from "./style";
 import Arrow from "../../components/arrow";
 
 const Main = () => {
