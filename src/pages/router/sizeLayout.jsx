@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const SizeLayout = () => {
   return (
-    <Conatiner>
+    <Conatiner onContextMenu={(e) => e.preventDefault()}>
       <Outlet />
     </Conatiner>
   )
@@ -17,5 +17,6 @@ const Conatiner = styled.div`
   aspect-ratio: 9 / 16;
   position: absolute;
   top: 0;
-  left: calc((100vw - 1080px) / 2)
+  left: calc((100vw - 1080px) / 2);
+  position: relative;
 `

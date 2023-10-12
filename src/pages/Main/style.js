@@ -12,13 +12,14 @@ export const Placard = styled.div`
   display: flex;
   width: 1080px;
   height: 400px;
-  background: #000;
+  background: #D9D9D9;
 `
 
 export const ContentBox = styled.div`
   display: flex;
   padding: 0 40px;
   justify-content: space-between;
+  align-items: center;
   gap: 40px;
 `
 
@@ -36,8 +37,94 @@ export const MenuBar = styled(MenuContainer)`
   gap: 40px;
 `
 
-export const MenuBox = styled.div`
+export const MenuContent = styled.div`
+  display: grid;
+  gap: ${({level}) => level === 3 ? '80px 40px' : '40px'};
+  grid-template-columns: repeat(2, 1fr);
+`
+
+export const LeftBottomContent = styled.div`
+  display: flex;
+  width: 280px;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+  background: #F5F5F5;
+`
+
+export const RightBottomContent = styled(Container)`
+  width: 800px;
+  background: #FFFFFF;
+`
+
+export const RecommendButton = styled.div`
+  display: flex;
   width: 200px;
+  height: 340px;
+  border-radius: 20px;
+  background: #D9D9D9;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-left: 12.8px;
+  font-family: Inter;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100px;
+  letter-spacing: 12.8px;
+`
+
+export const BottomBox = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  background: #D9D9D9;
+  box-sizing: border-box;
+`
+
+export const BottomTitleBox = styled(BottomBox)`
+  justify-content: flex-end;
+  padding: 0 40px;
+`
+
+export const BottomOrderBox = styled(BottomBox)`
+  justify-content: space-between;
+  padding: 0 60px;
+`
+
+export const BottomTitle = styled.span`
+  font-family: Inter;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+`
+
+export const OrderButton = styled.div`
+  width: 300px;
+  height: 60px;
+  border-radius: 20px;
+  background: #F5F5F5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Inter;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+`
+
+export const BottomMenuBox = styled.div`
+  width: 800px;
   height: 200px;
-  background: #BBB;
+  box-sizing: border-box;
+  padding: 0 20px;
+  gap: 40px;
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
