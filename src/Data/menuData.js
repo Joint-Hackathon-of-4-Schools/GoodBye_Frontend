@@ -100,7 +100,7 @@ export const MenuContentData = [
 			img: '',
 		},
         {
-			title: `한여울카라멜`,
+			title: `흰여울카라멜`,
             money: 1300,
 			img: '',
 		},

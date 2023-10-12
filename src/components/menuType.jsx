@@ -19,7 +19,7 @@ export default MenuType;
 const Container = styled.div`
   width: 200px;
   height: 200px;
-  background: #BBB;
+  background: #F5F5F5;
   background-image: url(${({img}) => img});
   background-repeat: no-repeat;
   background-size: cover;
