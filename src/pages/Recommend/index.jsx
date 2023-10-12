@@ -14,6 +14,9 @@ const Recommend = () => {
           <Link to="/recommend/AI">
             <S.Button>AI 추천 조합 받아보기</S.Button>
           </Link>
+          <Link to="/">
+            <S.Button>AI와 밸런스게임하기</S.Button>
+          </Link>
         </S.ButtonWrap>
       </S.ContentWrap>
       <S.GrayBox />

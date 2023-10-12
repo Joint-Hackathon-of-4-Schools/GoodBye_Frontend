@@ -14,7 +14,7 @@ export const ContentWrap = styled.div`
 
 export const ButtonWrap = styled.div`
   width: 600px;
-  height: 640px;
+  height: 840px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
