@@ -52,7 +52,6 @@ export const MenuWrap = styled.div`
 export const MenuImg = styled.div`
   width: 200px;
   height: 200px;
-  background-color: red;
   margin-right: 60px;
   border-radius: 20px;
   border: none;
