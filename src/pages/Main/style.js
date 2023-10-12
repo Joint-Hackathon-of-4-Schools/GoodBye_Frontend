@@ -97,7 +97,7 @@ export const BottomTitle = styled.span`
   font-family: Inter;
   font-size: 40px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 900;
 `
 
 export const OrderButton = styled.div`
