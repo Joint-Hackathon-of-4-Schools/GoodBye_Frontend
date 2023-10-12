@@ -99,7 +99,7 @@ const Main = () => {
 								<MenuBox
 									key={i}
 									level={Math.ceil(arr.length / 2)}
-									onClick={() => OrderChange(v.title, 1, v.money, v.img)}
+									onClick={() => OrderChange(v.title, 1, v.money, v.imageURL)}
 									{...v}
 								/>
 							)
