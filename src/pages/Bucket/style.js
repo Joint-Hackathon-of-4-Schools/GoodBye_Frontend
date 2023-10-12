@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -8,6 +9,10 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const NewLink = styled(Link)`
+  text-decoration: none;
 `;
 
 export const Title = styled.div`
@@ -131,6 +136,7 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 export const Modal = styled.div`
@@ -145,6 +151,7 @@ export const Modal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 999;
 `;
 
 export const ModalTitle = styled.p`
@@ -201,7 +208,7 @@ export const HomeButton = styled.button`
 export const Box = styled.div`
   width: 800px;
   height: 100%;
-  background-color: red;
+
   display: flex;
   flex-direction: column;
   gap: 20px;

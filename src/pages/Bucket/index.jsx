@@ -6,7 +6,12 @@ const Bucket = () => {
   const [step, setStep] = useState("");
   const array = localStorage.getItem("orderList");
   const hiarray = JSON.parse(array);
+  let sum = 0;
   console.log(array);
+  const totalAmount = hiarray.reduce(
+    (total, item) => total + Number(item.money),
+    0
+  );
 
   return (
     <>
@@ -61,10 +66,12 @@ const Bucket = () => {
           </S.TitleWrap>
         </S.MenuWrap> */}
       </S.Wrapper>
-      <S.AllPrice>총 22,000원</S.AllPrice>
+      <S.AllPrice>총 {totalAmount}원</S.AllPrice>
       <S.ButtonWrap>
         <S.Bwrap>
-          <S.Button>주문 취소</S.Button>
+          <S.NewLink to="/">
+            <S.Button>주문 취소</S.Button>
+          </S.NewLink>
           <S.Button onClick={() => setStep("check")}>결제 하기</S.Button>
         </S.Bwrap>
       </S.ButtonWrap>
