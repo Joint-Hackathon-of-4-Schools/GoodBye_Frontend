@@ -108,7 +108,7 @@ const Main = () => {
 				</_.ContentBox>
 				<_.Placard>
 					<_.LeftBottomContent>
-						<_.RecommendButton>메뉴 추천 받기</_.RecommendButton>
+						<_.RecommendButton onClick={() => navigate('/recommend')}>메뉴 추천 받기</_.RecommendButton>
 					</_.LeftBottomContent>
 					<_.RightBottomContent>
 						<_.BottomTitleBox>
