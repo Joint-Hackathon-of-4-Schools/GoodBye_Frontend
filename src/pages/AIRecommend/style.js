@@ -172,6 +172,12 @@ export const MenuImg = styled.div`
   border-radius: 20px;
   border: none;
   background-color: #d9d9d9;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const TitleWrap = styled.div`

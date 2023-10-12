@@ -158,7 +158,7 @@ const Balance = () => {
                 <br /> 5% 추가 할인 혜택을 받을 수 있어요.
               </S.FailSubTitle>
               <S.AnswerImg>
-                <img src={data?.menus[answer].imageURL}></img>
+                <img src={data?.menus[answer].imgUrl} alt="dd"></img>
               </S.AnswerImg>
               <S.AnswerName>{data?.menus[answer].name}</S.AnswerName>
               <S.AnswerPrice>

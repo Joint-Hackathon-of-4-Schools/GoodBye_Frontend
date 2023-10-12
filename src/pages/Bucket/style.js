@@ -56,14 +56,22 @@ export const MenuImg = styled.div`
   border-radius: 20px;
   border: none;
   background-color: #d9d9d9;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
 `;
 
 export const TitleWrap = styled.div`
-  width: 200px;
+  width: 400px;
   height: 120px;
 `;
 
 export const MenuName = styled.h1`
+  width: 100%;
   font-size: 40px;
   margin: 0;
 `;
@@ -95,7 +103,7 @@ export const ButtonWrap = styled.div`
   width: 100%;
   height: 300px;
   font-size: 40px;
-  background-color: #d9d9d9;
+  background-color: #ffc500;
   position: relative;
 `;
 
@@ -117,7 +125,7 @@ export const Button = styled.button`
   height: 120px;
   border-radius: 20px;
   border: none;
-  background-color: #f5f5f5;
+  background-color: #fff;
   font-size: 40px;
   display: flex;
   justify-content: center;
@@ -128,7 +136,7 @@ export const Button = styled.button`
 export const Modal = styled.div`
   width: 600px;
   height: 800px;
-  background-color: #d9d9d9;
+  background-color: #ffc500;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -178,6 +186,7 @@ export const CountButton = styled.button`
   justify-content: center;
   align-items: center;
   margin-bottom: 100px;
+  background-color: #fff;
 `;
 
 export const HomeButton = styled.button`
@@ -186,4 +195,14 @@ export const HomeButton = styled.button`
   border: none;
   font-size: 30px;
   border-radius: 20px;
+  background-color: #fff;
+`;
+
+export const Box = styled.div`
+  width: 800px;
+  height: 100%;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;

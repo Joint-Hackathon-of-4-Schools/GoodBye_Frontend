@@ -1,11 +1,14 @@
 import React from "react";
 import * as S from "./style";
 import { Link } from "react-router-dom";
+import Header from "../../components/header";
+import 챗지피티 from "../../asset/Group 16.png";
+import 챗지피티로고 from "../../asset/powered by.png";
 
 const Recommend = () => {
   return (
     <>
-      <S.GrayBox />
+      <Header />
       <S.ContentWrap>
         <S.ButtonWrap>
           <Link to="/recommend/combine">
@@ -19,7 +22,12 @@ const Recommend = () => {
           </Link>
         </S.ButtonWrap>
       </S.ContentWrap>
-      <S.GrayBox />
+      <S.GrayBox>
+        <S.ContentWrapper>
+          <img src={챗지피티로고} alt="ddd" className="img1"></img>
+          <img src={챗지피티} alt="ddd" className="img2"></img>
+        </S.ContentWrapper>
+      </S.GrayBox>
     </>
   );
 };
