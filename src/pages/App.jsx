@@ -6,11 +6,10 @@ import Bucket from "./Bucket";
 import Recommend from "./Recommend";
 import Combine from "./Combine";
 import AIRecommned from "./AIRecommend";
-<<<<<<< HEAD
+
 import Balance from "./Balance";
-=======
+
 import Promotion from "./promotion";
->>>>>>> develop
 
 function App() {
   return (
