@@ -1,11 +1,44 @@
 import React, { useState } from "react";
 import * as S from "./style";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const AIRecommned = () => {
   const [step, setStep] = useState("first");
   const [result, setResult] = useState("");
   const [gender, setGender] = useState("");
+  const [caffeine, setCaffeine] = useState("");
+  const [three, setThree] = useState("");
+  const [game, setGame] = useState("");
+  const [age, setAge] = useState("");
+  const [data, setData] = useState();
+
+  const sendData = {
+    gender: gender,
+    caffeine: caffeine,
+    newTry: three,
+    gameGenre: game,
+    age: age,
+  };
+
+  const getGpt = async () => {
+    const { data } = await axios({
+      url: "http://192.168.7.146:8080/api/chatGpt/recommend",
+      method: "post",
+      data: sendData,
+    });
+    console.log(data);
+    setData(data);
+  };
+
+  const itemInfor = data && [
+    {
+      title: data?.name,
+      amount: 1,
+      money: data?.price,
+      imageURL: data?.imgUrl,
+    },
+  ];
 
   return (
     <S.Wrapper>
@@ -60,12 +93,14 @@ const AIRecommned = () => {
             <S.TtwoButton
               onClick={() => {
                 setStep("qa3");
+                setCaffeine("Yes");
               }}
             >
               네
             </S.TtwoButton>
             <S.TwoButton
               onClick={() => {
+                setCaffeine("No");
                 setStep("qa3");
               }}
             >
@@ -78,11 +113,14 @@ const AIRecommned = () => {
         <>
           <S.QaTitle>Q3.</S.QaTitle>
           <S.QaSubTitle>
-            카페인이 삶에 꼭 필요한 물질이라고 생각하나요?
+            자주 가던 카페에
+            <br /> 새로 나온 음료가 있다면
+            <br /> 어떤 것을 시킬건가요?
           </S.QaSubTitle>
           <S.TwoWrap>
             <S.TwoButton
               onClick={() => {
+                setThree("Yes");
                 setStep("qa4");
               }}
             >
@@ -90,6 +128,8 @@ const AIRecommned = () => {
             </S.TwoButton>
             <S.TtwoButton
               onClick={() => {
+                setThree("No");
+
                 setStep("qa4");
               }}
             >
@@ -110,6 +150,7 @@ const AIRecommned = () => {
               <S.TtwoButton
                 onClick={() => {
                   setStep("qa5");
+                  setGame("Romantic");
                 }}
               >
                 달달한 로맨스 게임
@@ -117,6 +158,7 @@ const AIRecommned = () => {
               <S.TwoButton
                 onClick={() => {
                   setStep("qa5");
+                  setGame("Rpg");
                 }}
               >
                 손맛이 느껴지는 RPG 게임
@@ -126,6 +168,7 @@ const AIRecommned = () => {
               <S.TwoButton
                 onClick={() => {
                   setStep("qa5");
+                  setGame("Adventure");
                 }}
               >
                 상쾌한 어드벤처 게임
@@ -133,6 +176,7 @@ const AIRecommned = () => {
               <S.TtwoButton
                 onClick={() => {
                   setStep("qa5");
+                  setGame("Jar");
                 }}
               >
                 인생의 쓴맛을 알게해주는 플랫포머 게임
@@ -153,6 +197,7 @@ const AIRecommned = () => {
               <S.TtwoButton
                 onClick={() => {
                   setStep("qa6");
+                  setAge("10");
                 }}
               >
                 0~19세
@@ -160,6 +205,7 @@ const AIRecommned = () => {
               <S.TwoButton
                 onClick={() => {
                   setStep("qa6");
+                  setAge("20");
                 }}
               >
                 30~39세
@@ -169,6 +215,7 @@ const AIRecommned = () => {
               <S.TwoButton
                 onClick={() => {
                   setStep("qa6");
+                  setAge("30");
                 }}
               >
                 20~29세
@@ -176,6 +223,7 @@ const AIRecommned = () => {
               <S.TtwoButton
                 onClick={() => {
                   setStep("qa6");
+                  setAge("40");
                 }}
               >
                 40세~99세
@@ -188,13 +236,14 @@ const AIRecommned = () => {
         <>
           <S.P>
             AI가 당신의 취향에 맞는
-            <br /> 메뉴 조합을 추천하고 있어요.
+            <br /> 메뉴를 추천하고 있어요.
             <br />이 절차는 몇 분 정도 소요될 수 있어요.
           </S.P>
           <S.OkButton
             onClick={() => {
               setResult("hi");
               setStep("");
+              getGpt();
             }}
           >
             확인하기
@@ -203,25 +252,33 @@ const AIRecommned = () => {
       )}
       {result === "hi" && (
         <>
-          <S.Title>AI 추천 조합</S.Title>
+          <S.Title>AI 추천 메뉴</S.Title>
           <S.CardWrapper>
             <S.CardWrap>
-              <S.MenuImg />
+              <S.MenuImg>
+                <img src={data?.imgUrl} alt="cc"></img>
+              </S.MenuImg>
               <S.TitleWrap>
-                <S.MenuName>하이</S.MenuName>
-                <S.SmallName>수량: n개</S.SmallName>
-                <S.MenuPrice>7,000원</S.MenuPrice>
+                <S.MenuName>{data?.name}</S.MenuName>
+
+                <S.MenuPrice>{data?.price}원</S.MenuPrice>
               </S.TitleWrap>
             </S.CardWrap>
           </S.CardWrapper>
-          <S.Price>총 ??,000원</S.Price>
+          <S.Price>총 {data?.price}원</S.Price>
           <S.ButtonWrap>
             <S.ButtonWtap>
               <Link to="/">
                 <S.Button>홈으로 돌아가기</S.Button>
               </Link>
               <Link to="/main">
-                <S.Button>장바구니에 담기</S.Button>
+                <S.Button
+                  onClick={() =>
+                    localStorage.setItem("orderList", JSON.stringify(itemInfor))
+                  }
+                >
+                  장바구니에 담기
+                </S.Button>
               </Link>
             </S.ButtonWtap>
           </S.ButtonWrap>

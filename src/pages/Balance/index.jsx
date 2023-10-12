@@ -118,7 +118,9 @@ const Balance = () => {
           {data?.answerIndex === answerId ? (
             <>
               <S.AnswerTitle>성공하였습니다!</S.AnswerTitle>
-              <S.AnswerImg>음료 이미지</S.AnswerImg>
+              <S.AnswerImg>
+                <img src={data?.menus[answer].imgUrl} alt="dd"></img>
+              </S.AnswerImg>
               <S.AnswerName>{data?.menus[answer].name}</S.AnswerName>
               <S.AnswerPrice>
                 가격 : {data?.menus[answer].price}원
@@ -131,7 +133,7 @@ const Balance = () => {
                   <Link to="/">
                     <S.Buutton>홈으로 돌아가기</S.Buutton>
                   </Link>
-                  <Link to="/bucket">
+                  <Link to="/main">
                     <S.Buutton
                       onClick={() =>
                         localStorage.setItem(
@@ -155,7 +157,9 @@ const Balance = () => {
                 하지만 지금 AI 추천 메뉴를 구입하시면
                 <br /> 5% 추가 할인 혜택을 받을 수 있어요.
               </S.FailSubTitle>
-              <S.AnswerImg>음료 이미지</S.AnswerImg>
+              <S.AnswerImg>
+                <img src={data?.menus[answer].imgUrl} alt="dd"></img>
+              </S.AnswerImg>
               <S.AnswerName>{data?.menus[answer].name}</S.AnswerName>
               <S.AnswerPrice>
                 가격 : {data?.menus[answer].price}원
