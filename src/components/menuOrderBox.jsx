@@ -4,7 +4,11 @@ import styled from "styled-components";
 const MenuOrderBox = ({title, amount, OrderChange}) => {
   return (
     <Container>
-      <TextBox>{title}</TextBox>
+      <TextBox>
+        {title.slice(0, 3)}
+        <br />
+        {title.slice(3)}
+      </TextBox>
       <CountBox>
         <ChangeButton onClick={() => OrderChange(title, 1)}>
           <Circle />
@@ -37,7 +41,7 @@ const TextBox = styled.div`
   justify-content: center;
   align-items: center;
   font-family: Inter;
-  font-size: 40px;
+  font-size: 32px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
