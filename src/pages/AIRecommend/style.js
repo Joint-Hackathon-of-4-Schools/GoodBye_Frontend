@@ -152,7 +152,7 @@ export const CardWrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: 120px;
+  gap: 20px;
   margin: 0 auto;
 `;
 
@@ -186,7 +186,7 @@ export const TitleWrap = styled.div`
 `;
 
 export const MenuName = styled.h1`
-  font-size: 40px;
+  font-size: 35px;
   margin: 0;
 `;
 

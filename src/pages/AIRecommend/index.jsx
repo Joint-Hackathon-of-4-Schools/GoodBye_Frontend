@@ -12,6 +12,10 @@ const AIRecommned = () => {
   const [game, setGame] = useState("");
   const [age, setAge] = useState("");
   const [data, setData] = useState();
+  const totalAmount = data?.reduce(
+    (total, item) => total + Number(item.price),
+    0
+  );
 
   const sendData = {
     gender: gender,
@@ -254,31 +258,37 @@ const AIRecommned = () => {
         <>
           <S.Title>AI 추천 메뉴</S.Title>
           <S.CardWrapper>
-            <S.CardWrap>
+            {/* <S.CardWrap>
               <S.MenuImg>
                 <img src={data?.imgUrl} alt="cc"></img>
               </S.MenuImg>
               <S.TitleWrap>
                 <S.MenuName>{data?.name}</S.MenuName>
-
                 <S.MenuPrice>{data?.price}원</S.MenuPrice>
               </S.TitleWrap>
-            </S.CardWrap>
+            </S.CardWrap> */}
+            {data?.map((i) => {
+              return (
+                <S.CardWrap>
+                  <S.MenuImg>
+                    <img src={i.imgUrl} alt="s"></img>
+                  </S.MenuImg>
+                  <S.TitleWrap>
+                    <S.MenuName>{i.name}</S.MenuName>
+                    <S.MenuPrice>{i.price}</S.MenuPrice>
+                  </S.TitleWrap>
+                </S.CardWrap>
+              );
+            })}
           </S.CardWrapper>
-          <S.Price>총 {data?.price}원</S.Price>
+          <S.Price>총 {totalAmount}원</S.Price>
           <S.ButtonWrap>
             <S.ButtonWtap>
               <Link to="/">
                 <S.Button>홈으로 돌아가기</S.Button>
               </Link>
               <Link to="/main">
-                <S.Button
-                  onClick={() =>
-                    localStorage.setItem("orderList", JSON.stringify(itemInfor))
-                  }
-                >
-                  장바구니에 담기
-                </S.Button>
+                <S.Button>장바구니에 담기</S.Button>
               </Link>
             </S.ButtonWtap>
           </S.ButtonWrap>
