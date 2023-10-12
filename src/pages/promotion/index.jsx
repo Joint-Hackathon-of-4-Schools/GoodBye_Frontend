@@ -8,7 +8,10 @@ const Promotion = () => {
   const navigate = useNavigate();
 
   return (
-    <_.Container onClick={() => navigate('/main')}>
+    <_.Container onClick={() => {
+        localStorage.removeItem('orderList');
+        navigate('/main')
+      }}>
       <_.TopBox>
         <_.Img src={Logo}/>
         <_.Title>CAFE in BUSAN</_.Title>

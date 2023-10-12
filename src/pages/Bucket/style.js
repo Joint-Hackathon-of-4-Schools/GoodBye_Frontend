@@ -212,4 +212,8 @@ export const Box = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

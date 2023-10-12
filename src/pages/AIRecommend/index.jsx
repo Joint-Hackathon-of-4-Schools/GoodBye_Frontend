@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import * as S from "./style";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 const AIRecommned = () => {
+  const navigate = useNavigate()
   const [step, setStep] = useState("first");
   const [result, setResult] = useState("");
   const [gender, setGender] = useState("");
@@ -12,6 +13,7 @@ const AIRecommned = () => {
   const [game, setGame] = useState("");
   const [age, setAge] = useState("");
   const [data, setData] = useState();
+  const [requestSuccess, setrequestSuccess] = useState(false)
   const totalAmount = data?.reduce(
     (total, item) => total + Number(item.price),
     0
@@ -33,7 +35,39 @@ const AIRecommned = () => {
     });
     console.log(data);
     setData(data);
+    setrequestSuccess(true);
   };
+
+  const OrderChange = () => {
+    const lastOrder = JSON.parse(localStorage.getItem('orderList')) || [];
+    let changeFlag = [false, false, false];
+		const OrderList = [];
+
+		for (const Data of lastOrder) {
+      for(const Index in data) {
+        if (Data.title === data[Index].name) {
+          Data.amount += 1;
+          changeFlag[Index] = true;
+          break;
+        }
+      }
+      OrderList.push(Data)
+		}
+
+    for(const Index in data) {
+      if (!changeFlag[Index]) {
+        OrderList.push({
+          title: data[Index].name,
+          amount: 1,
+          money: data[Index].price,
+          imageURL: data[Index].imageURL
+        });
+      }
+    }
+    
+    localStorage.setItem('orderList', JSON.stringify(OrderList));
+    navigate('/main')
+  }
 
   const itemInfor = data && [
     {
@@ -44,10 +78,16 @@ const AIRecommned = () => {
     },
   ];
 
+  useEffect(() => {
+    if(step === "qa6") {
+      getGpt();
+    }
+  }, [step])
+
   return (
     <S.Wrapper>
       {step !== "qa6" && result !== "hi" && (
-        <Link to="/">
+        <Link to="/main">
           <S.BackButton>그만두기</S.BackButton>
         </Link>
       )}
@@ -244,11 +284,12 @@ const AIRecommned = () => {
             <br />이 절차는 몇 분 정도 소요될 수 있어요.
           </S.P>
           <S.OkButton
+            disabled={!requestSuccess}
             onClick={() => {
               setResult("hi");
               setStep("");
-              getGpt();
             }}
+            
           >
             확인하기
           </S.OkButton>
@@ -271,25 +312,23 @@ const AIRecommned = () => {
               return (
                 <S.CardWrap>
                   <S.MenuImg>
-                    <img src={i.imgUrl} alt="s"></img>
+                    <S.Img src={i.imgUrl}></S.Img>
                   </S.MenuImg>
                   <S.TitleWrap>
                     <S.MenuName>{i.name}</S.MenuName>
-                    <S.MenuPrice>{i.price}</S.MenuPrice>
+                    <S.MenuPrice>{i.price.toLocaleString()}원</S.MenuPrice>
                   </S.TitleWrap>
                 </S.CardWrap>
               );
             })}
           </S.CardWrapper>
-          <S.Price>총 {totalAmount}원</S.Price>
+          <S.Price>총 {totalAmount.toLocaleString()}원</S.Price>
           <S.ButtonWrap>
             <S.ButtonWtap>
-              <Link to="/">
+              <Link to="/main">
                 <S.Button>홈으로 돌아가기</S.Button>
               </Link>
-              <Link to="/main">
-                <S.Button>장바구니에 담기</S.Button>
-              </Link>
+              <S.Button onClick={() => OrderChange()}>장바구니에 담기</S.Button>
             </S.ButtonWtap>
           </S.ButtonWrap>
         </>

@@ -181,7 +181,7 @@ export const MenuImg = styled.div`
 `;
 
 export const TitleWrap = styled.div`
-  width: 200px;
+  width: 220px;
   height: 120px;
 `;
 
@@ -233,3 +233,12 @@ export const Button = styled.button`
   border-radius: 20px;
   border: none;
 `;
+
+export const Img = styled.img.attrs({
+  alt: '메뉴 이미지'
+})`
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  object-position: center center;
+`

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import * as S from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Modal from "../../components/modal";
 
 const Bucket = () => {
+  const navigate = useNavigate()
   const [step, setStep] = useState("");
+	const [ModalState, setModalState] = useState(false)
   const array = localStorage.getItem("orderList");
-  const hiarray = JSON.parse(array);
+  const hiarray = JSON.parse(array) || [];
   let sum = 0;
   console.log(array);
   const totalAmount = hiarray.reduce(
@@ -15,6 +18,17 @@ const Bucket = () => {
 
   return (
     <>
+      {
+				ModalState &&
+				<Modal
+					title='주문을<br />취소하시겠습니까?'
+					closeModel={() => setModalState(false)}
+					acceptRequest={() => {
+						setModalState(false)
+						navigate('/');
+					}}
+				/>
+			}
       {step === "check" && (
         <S.Modal>
           <S.ModalTitle>결제하시겠습니까?</S.ModalTitle>
@@ -50,7 +64,7 @@ const Bucket = () => {
                 <S.TitleWrap>
                   <S.MenuName>{i.title}</S.MenuName>
                   <S.MenuName>수량: {i.amount}</S.MenuName>
-                  <S.MenuPrice>{i.money}원</S.MenuPrice>
+                  <S.MenuPrice>{i.money.toLocaleString()}원</S.MenuPrice>
                 </S.TitleWrap>
               </S.MenuWrap>
             );
@@ -66,12 +80,10 @@ const Bucket = () => {
           </S.TitleWrap>
         </S.MenuWrap> */}
       </S.Wrapper>
-      <S.AllPrice>총 {totalAmount}원</S.AllPrice>
+      <S.AllPrice>총 {totalAmount.toLocaleString()}원</S.AllPrice>
       <S.ButtonWrap>
         <S.Bwrap>
-          <S.NewLink to="/">
-            <S.Button>주문 취소</S.Button>
-          </S.NewLink>
+          <S.Button onClick={() => setModalState(true)}>주문 취소</S.Button>
           <S.Button onClick={() => setStep("check")}>결제 하기</S.Button>
         </S.Bwrap>
       </S.ButtonWrap>

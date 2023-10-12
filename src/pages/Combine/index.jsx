@@ -30,13 +30,29 @@ const Combine = () => {
 
   const OrderChange = () => {
     const lastOrder = JSON.parse(localStorage.getItem('orderList')) || [];
-    lastOrder.push({
-      title: ResultData.title,
-      amount: 1,
-      money: ResultData.money,
-      imageURL: ResultData.imageURL
-    });
-    localStorage.setItem('orderList', JSON.stringify(lastOrder));
+    let changeFlag = false;
+		const OrderList = [];
+
+		for (const Data of lastOrder) {
+			if (Data.title === ResultData.title) {
+				Data.amount += 1;
+        OrderList.push(Data)
+				changeFlag = true;
+			} else {
+				OrderList.push(Data)
+			}
+		}
+
+		if (!changeFlag) {
+			OrderList.push({
+        title: ResultData.title,
+        amount: 1,
+        money: ResultData.money,
+        imageURL: ResultData.imageURL
+      });
+		}
+    
+    localStorage.setItem('orderList', JSON.stringify(OrderList));
     navigate('/main')
   }
 
@@ -85,7 +101,7 @@ const Combine = () => {
                   <_.Text>달게</_.Text>
                 </_.BetweenBox>
                 <_.RangeBox>
-                  <_.RangeInput onChange={(e) => SugarPercent.current = +e.value}/>
+                  <_.RangeInput onChange={(e) => {SugarPercent.current = +e.target.value}}/>
                 </_.RangeBox>
               </div>
             </_.ContentInBox>

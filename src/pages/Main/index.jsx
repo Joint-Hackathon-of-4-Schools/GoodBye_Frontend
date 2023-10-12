@@ -61,7 +61,6 @@ const Main = () => {
 					acceptRequest={() => {
 						setModalState(false)
 						setOrderData([]);
-						localStorage.removeItem('orderList');
 						navigate('/');
 					}}
 				/>

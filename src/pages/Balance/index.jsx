@@ -5,6 +5,10 @@ import axios from "axios";
 
 const Balance = () => {
   const [data, setData] = useState();
+  const [requestSuccess, setrequestSuccess] = useState(false)
+  const [step, setStep] = useState("qa1");
+  const [isAnswer, setIsAnswet] = useState(true);
+
   const getBalance = async () => {
     const { data } = await axios({
       url: `http://192.168.7.146:8080/api/chatGpt/match`,
@@ -12,6 +16,7 @@ const Balance = () => {
     });
     setData(data);
     console.log(data);
+    setrequestSuccess(true)
   };
   const [answerId, setAnswerId] = useState();
   const answer = data && data?.answerIndex;
@@ -23,12 +28,32 @@ const Balance = () => {
       imageURL: data?.menus[answer].imgUrl,
     },
   ];
-  const [step, setStep] = useState("qa1");
-  const [isAnswer, setIsAnswet] = useState(true);
+
+  const OrderChange = (success) => {
+    const lastOrder = JSON.parse(localStorage.getItem('orderList')) || [];
+    let changeFlag = false
+		const OrderList = [];
+
+		for (const Data of lastOrder) {
+      if (Data.title === itemInfor.title) {
+        Data.amount += 1;
+        Data.money += Math.round(itemInfor.money * (success ? 0.9 : 0.95))
+        changeFlag = true;
+      }
+      OrderList.push(Data)
+		}
+
+    if (!changeFlag) {
+      OrderList.push(itemInfor);
+    }
+    
+    localStorage.setItem('orderList', JSON.stringify(OrderList));
+  }
+
   return (
     <>
       {step !== "qa3" && step !== "" && (
-        <Link to="/">
+        <Link to="/main">
           <S.BackButton>그만두기</S.BackButton>
         </Link>
       )}
@@ -79,6 +104,7 @@ const Balance = () => {
           <S.SubTitle>지금 가장 먹고싶은 메뉴를 선택해주세요.</S.SubTitle>
           <S.ButtonWrap>
             <S.Button1
+              disabled={!requestSuccess}
               onClick={() => {
                 setAnswerId(0);
                 setStep("");
@@ -87,6 +113,7 @@ const Balance = () => {
               {data?.menus[0].name}
             </S.Button1>
             <S.Button2
+              disabled={!requestSuccess}
               onClick={() => {
                 setAnswerId(1);
                 setStep("");
@@ -95,6 +122,7 @@ const Balance = () => {
               {data?.menus[1].name}
             </S.Button2>
             <S.Button2
+              disabled={!requestSuccess}
               onClick={() => {
                 setAnswerId(2);
                 setStep("");
@@ -103,6 +131,7 @@ const Balance = () => {
               {data?.menus[2].name}
             </S.Button2>
             <S.Button1
+              disabled={!requestSuccess}
               onClick={() => {
                 setAnswerId(3);
                 setStep("");
@@ -123,10 +152,10 @@ const Balance = () => {
               </S.AnswerImg>
               <S.AnswerName>{data?.menus[answer].name}</S.AnswerName>
               <S.AnswerPrice>
-                가격 : {data?.menus[answer].price}원
+                가격 : {data?.menus[answer].price.toLocaleString()}원
               </S.AnswerPrice>
               <S.AnswerNowPrice>
-                {data?.menus[answer].price - data?.menus[answer].price * 0.1}원
+                {(data?.menus[answer].price - data?.menus[answer].price * 0.1).toLocaleString()}원
               </S.AnswerNowPrice>
               <S.Box>
                 <S.ButtonWraap>
@@ -135,12 +164,7 @@ const Balance = () => {
                   </Link>
                   <Link to="/main">
                     <S.Buutton
-                      onClick={() =>
-                        localStorage.setItem(
-                          "orderList",
-                          JSON.stringify(itemInfor)
-                        )
-                      }
+                      onClick={() => OrderChange(true)}
                     >
                       장바구니에 담기
                     </S.Buutton>
@@ -162,10 +186,10 @@ const Balance = () => {
               </S.AnswerImg>
               <S.AnswerName>{data?.menus[answer].name}</S.AnswerName>
               <S.AnswerPrice>
-                가격 : {data?.menus[answer].price}원
+                가격 : {data?.menus[answer].price.toLocaleString()}원
               </S.AnswerPrice>
               <S.AnswerNowPrice>
-                {data?.menus[answer].price - data?.menus[answer].price * 0.05}원
+                {(data?.menus[answer].price - data?.menus[answer].price * 0.05).toLocaleString()}원
               </S.AnswerNowPrice>
               <S.Box>
                 <S.ButtonWraap>
@@ -174,12 +198,7 @@ const Balance = () => {
                   </Link>
                   <Link to="/main">
                     <S.Buutton
-                      onClick={() =>
-                        localStorage.setItem(
-                          "orderList",
-                          JSON.stringify(itemInfor)
-                        )
-                      }
+                      onClick={() => OrderChange(false)}
                     >
                       장바구니에 담기
                     </S.Buutton>
