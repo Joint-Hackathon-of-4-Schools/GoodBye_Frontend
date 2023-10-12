@@ -172,7 +172,7 @@ const Balance = () => {
                   <Link to="/">
                     <S.Buutton>홈으로 돌아가기</S.Buutton>
                   </Link>
-                  <Link to="/bucket">
+                  <Link to="/main">
                     <S.Buutton
                       onClick={() =>
                         localStorage.setItem(

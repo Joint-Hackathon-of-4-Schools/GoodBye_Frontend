@@ -80,7 +80,7 @@ const Main = () => {
 								MenuTypeData[+MenuBack].map((v, i) =>
 									<MenuType
 										key={i}
-										img={v.imageURL}
+										imageURL={v.imageURL}
 										onClick={() => setMenuIndex(i + (+MenuBack * 4))}
 									>
 										{v.title}

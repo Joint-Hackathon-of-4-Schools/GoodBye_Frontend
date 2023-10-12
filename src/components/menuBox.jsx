@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const MenuBox = ({ title, money = '', img, level, ...args }) => {
+const MenuBox = ({ title, money = '', imageURL, level, ...args }) => {
   return (
     <Container
-      img={img}
       level={level}
       {...args}
     >
+      <Img src={imageURL}/>
       <TextFlex>
         <LeftTextBox>{title}</LeftTextBox>
         <RightTextBox>{money.toLocaleString()}원</RightTextBox>
@@ -22,12 +22,17 @@ const Container = styled.div`
   width: 360px;
   height: ${({level}) => level === 1 ? 600 : level === 2 ? 320 : 200}px;
   background: #F5F5F5;
-  background-image: url(${({ img }) => img});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+`
+
+const Img = styled.img.attrs({
+  alt: '음료 이미지'
+})`
+  width: 360px;
+  height: calc(100% - 80px);
+  object-fit: contain;
+  object-position: center center;
 `
 
 const TextFlex = styled.div`
@@ -43,7 +48,7 @@ const LeftTextBox = styled.span`
   font-family: Inter;
   font-style: normal;
   font-size: 32px;
-  font-weight: 400;
+  font-weight: 600;
   text-align: center;
   vertical-align: center;
   white-space: pre-line;
