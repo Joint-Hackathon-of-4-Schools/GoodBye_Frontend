@@ -17,7 +17,7 @@ const Balance = () => {
   const answer = data && data?.answerIndex;
   const itemInfor = data && [
     {
-      titile: data?.menus[answer].name,
+      title: data?.menus[answer].name,
       amount: 1,
       money: data?.menus[answer].price,
       imageURL: data?.menus[answer].imgUrl,
@@ -168,7 +168,7 @@ const Balance = () => {
                   <Link to="/">
                     <S.Buutton>홈으로 돌아가기</S.Buutton>
                   </Link>
-                  <Link to="/bucket">
+                  <Link to="/main">
                     <S.Buutton
                       onClick={() =>
                         localStorage.setItem(

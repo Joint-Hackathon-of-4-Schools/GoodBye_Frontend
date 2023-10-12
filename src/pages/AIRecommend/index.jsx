@@ -220,7 +220,7 @@ const AIRecommned = () => {
               <Link to="/">
                 <S.Button>홈으로 돌아가기</S.Button>
               </Link>
-              <Link to="/bucket">
+              <Link to="/main">
                 <S.Button>장바구니에 담기</S.Button>
               </Link>
             </S.ButtonWtap>

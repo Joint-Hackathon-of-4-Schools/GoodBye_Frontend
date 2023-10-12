@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const MenuType = ({children, img, ...args}) => {
+const MenuType = ({children, imageURL, ...args}) => {
   return (
     <Container
-      img={img}
+      img={imageURL}
       {...args}
     >
       <TextBox>

@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const MenuBox = ({ title, money = '', img, level, ...args }) => {
+const MenuBox = ({ title, money = '', imageURL, level, ...args }) => {
   return (
     <Container
-      img={img}
+      img={imageURL}
       level={level}
       {...args}
     >
