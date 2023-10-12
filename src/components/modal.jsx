@@ -53,7 +53,7 @@ const Modal = ({ type = 'request', closeModel = () => { }, acceptRequest = () =>
             </BottomBox>
             :
             <BottomResultBox>
-              <resultText>{text}</resultText>
+              <ResultText>{text}</ResultText>
             </BottomResultBox>
         }
       </ContentBox>
@@ -79,7 +79,7 @@ const Container = styled.div`
 const ContentBox = styled.div`
     width: 600px;
     height: 800px;
-    background: #D9D9D9;
+    background: #FFC500;
     border-radius: 20px;
     padding: 220px 70px 120px;
     box-sizing: border-box;
@@ -112,7 +112,7 @@ const Button = styled.div`
   width: 200px;
   height: 120px;
   border-radius: 20px;
-  background: #F5F5F5;
+  background: #FFF;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,7 +123,7 @@ const Button = styled.div`
   line-height: 100%;
 `
 
-const resultText = styled(Button)`
+const ResultText = styled(Button)`
   width: 460px;
   height: 168px;
   font-size: 32px;

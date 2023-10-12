@@ -30,7 +30,7 @@ const Container = styled.div`
   min-width: 180px;
   height: 160px;
   border-radius: 20px;
-  background: #D9D9D9;
+  background: #F5F5F5;
   position: relative;
 `
 
@@ -43,7 +43,7 @@ const TextBox = styled.div`
   font-family: Inter;
   font-size: 32px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 900;
   line-height: 150%;
 `
 
@@ -73,7 +73,7 @@ const Circle = styled.div`
   width: 25.714px;
   height: 20px;
   border-radius: 20px;
-  background: #F5F5F5;
+  background: #FFC500;
 `
 
 const AmountText = styled.span`

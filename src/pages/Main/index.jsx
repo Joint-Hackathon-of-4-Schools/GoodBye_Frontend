@@ -7,6 +7,7 @@ import { MenuTypeData, MenuContentData } from "../../Data/menuData";
 import MenuOrderBox from "../../components/menuOrderBox";
 import Modal from "../../components/modal";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/header";
 
 const Main = () => {
 	const [MenuBack, setMenuBack] = useState(false);
@@ -66,7 +67,7 @@ const Main = () => {
 				/>
 			}
 			<_.Container>
-				<_.Placard></_.Placard>
+				<Header />
 				<_.ContentBox>
 					<_.MenuContainer>
 						<Arrow

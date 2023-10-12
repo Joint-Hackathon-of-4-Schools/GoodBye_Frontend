@@ -12,7 +12,6 @@ export const Placard = styled.div`
   display: flex;
   width: 1080px;
   height: 400px;
-  background: #D9D9D9;
 `
 
 export const ContentBox = styled.div`
@@ -49,7 +48,7 @@ export const LeftBottomContent = styled.div`
   height: 400px;
   justify-content: center;
   align-items: center;
-  background: #F5F5F5;
+  background: #FFFFFF;
 `
 
 export const RightBottomContent = styled(Container)`
@@ -62,7 +61,7 @@ export const RecommendButton = styled.div`
   width: 200px;
   height: 340px;
   border-radius: 20px;
-  background: #D9D9D9;
+  background: #FFC500;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -70,7 +69,7 @@ export const RecommendButton = styled.div`
   font-family: Inter;
   font-size: 64px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 900;
   line-height: 100px;
   letter-spacing: 12.8px;
 `
@@ -80,7 +79,7 @@ export const BottomBox = styled.div`
   height: 100px;
   display: flex;
   align-items: center;
-  background: #D9D9D9;
+  background: #FFC500;
   box-sizing: border-box;
 `
 
@@ -105,7 +104,7 @@ export const OrderButton = styled.div`
   width: 300px;
   height: 60px;
   border-radius: 20px;
-  background: #F5F5F5;
+  background: #FFF;
   display: flex;
   justify-content: center;
   align-items: center;

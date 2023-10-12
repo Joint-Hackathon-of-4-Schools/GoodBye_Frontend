@@ -7,7 +7,7 @@ const Arrow = ({able=false, direction="down", ...args}) => {
     }}
     {...args}
     >
-      <path d="M15 -3.05176e-05L0 15.2727L40 56L80 15.2727L65 -3.05176e-05L40 25.4545L15 -3.05176e-05Z" fill={able ? '#D9D9D9': 'transparent'} />
+      <path d="M15 -3.05176e-05L0 15.2727L40 56L80 15.2727L65 -3.05176e-05L40 25.4545L15 -3.05176e-05Z" fill={able ? '#000': 'transparent'} />
     </svg>
   )
 }
