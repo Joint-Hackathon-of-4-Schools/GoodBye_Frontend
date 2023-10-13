@@ -5,17 +5,17 @@ const MenuOrderBox = ({title, amount, OrderChange}) => {
   return (
     <Container>
       <TextBox>
-        {title.slice(0, 3)}
+        {title.slice(0, Math.ceil(title.length / 2))}
         <br />
-        {title.slice(3)}
+        {title.slice(Math.ceil(title.length / 2))}
       </TextBox>
       <CountBox>
-        <ChangeButton onClick={() => OrderChange(title, 1)}>
+        <ChangeButton onClick={() => !title.endsWith('(할인)') && OrderChange(title, 1)}>
           <Circle />
           <AmountText>+</AmountText>
         </ChangeButton>
         <AmountText>{amount}</AmountText>
-        <ChangeButton onClick={() => OrderChange(title, -1)}>
+        <ChangeButton onClick={() => !title.endsWith('(할인)') && OrderChange(title, -1)}>
           <Circle />
           <AmountText>-</AmountText>
         </ChangeButton>

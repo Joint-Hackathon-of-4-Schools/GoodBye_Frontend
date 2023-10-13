@@ -32,21 +32,26 @@ const Balance = () => {
   const OrderChange = (success) => {
     const lastOrder = JSON.parse(localStorage.getItem('orderList')) || [];
     let changeFlag = false
-		const OrderList = [];
+    const OrderList = [];
 
-		for (const Data of lastOrder) {
+    for (const Data of lastOrder) {
       if (Data.title === itemInfor.title) {
         Data.amount += 1;
         Data.money += Math.round(itemInfor.money * (success ? 0.9 : 0.95))
         changeFlag = true;
       }
       OrderList.push(Data)
-		}
+    }
 
     if (!changeFlag) {
-      OrderList.push(itemInfor);
+      OrderList.push({
+        title: data?.menus[answer].name + '(할인)',
+        amount: 1,
+        money: Math.round(data?.menus[answer].price * (success ? 0.9 : 0.95)),
+        imageURL: data?.menus[answer].imgUrl
+      });
     }
-    
+
     localStorage.setItem('orderList', JSON.stringify(OrderList));
   }
 
@@ -94,7 +99,12 @@ const Balance = () => {
               소요될 수 있어요.
             </S.Title>
           </S.TitleWrap>
-          <S.Button onClick={() => setStep("qa3")}>시작하기</S.Button>
+          <S.Button
+            disabled={!requestSuccess}
+            onClick={() => setStep("qa3")}
+          >
+            시작하기
+          </S.Button>
         </>
       )}
 
@@ -159,7 +169,7 @@ const Balance = () => {
               </S.AnswerNowPrice>
               <S.Box>
                 <S.ButtonWraap>
-                  <Link to="/">
+                  <Link to="/main">
                     <S.Buutton>홈으로 돌아가기</S.Buutton>
                   </Link>
                   <Link to="/main">
@@ -193,7 +203,7 @@ const Balance = () => {
               </S.AnswerNowPrice>
               <S.Box>
                 <S.ButtonWraap>
-                  <Link to="/">
+                  <Link to="/main">
                     <S.Buutton>홈으로 돌아가기</S.Buutton>
                   </Link>
                   <Link to="/main">

@@ -141,6 +141,7 @@ export const CombineButton = styled(SelectedButton)`
   width: 400px;
   background: #FFC500;
   font-size: 40px;
+  color: ${({bool}) => bool === false ? '#BBB' : '#000'};
 `
 
 export const WaitContainer = styled.div`

@@ -12,6 +12,8 @@ const Combine = () => {
   const [step, setStep] = useState(0);
   const [FeelLevel, setFeelLevel] = useState(0);
   const [ResultData, setResultData] = useState({});
+  const [requestSuccess, setrequestSuccess] = useState(false)
+  const Timer = useRef(null)
 
   const menuResult = () => {
     let flag = false;
@@ -25,6 +27,16 @@ const Combine = () => {
         }
       }
       if(flag) break;
+
+      if(Timer.current) {
+        clearInterval(Timer.current);
+        Timer.current = null;
+      }
+      Timer.current = setInterval(() => {
+        setrequestSuccess(true)
+        clearInterval(Timer.current);
+        Timer.current = null;
+      }, 3000)
     }
   }
 
@@ -147,7 +159,7 @@ const Combine = () => {
             <br />
             소요될 수 있어요.
           </_.TextContainer>
-          <_.CombineButton onClick={() => setStep(2)}>확인하기</_.CombineButton>
+          <_.CombineButton bool={requestSuccess} onClick={() => requestSuccess && setStep(2)}>확인하기</_.CombineButton>
         </_.WaitContainer>
       }
       {
